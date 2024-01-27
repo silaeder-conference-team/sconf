@@ -3,7 +3,7 @@
 <div align="center">
   <img id="logo" src="https://github.com/stepinhig/sconf/assets/119779337/374c24f6-3a3d-43fd-ab70-14a2fe0f1b8e" width="150" style="border-radius: 50%;">
   <br><br>
-  (Все права пренадлежат StepinHig Co. Ltd.)
+  (Все права пренадлежат Lenec Devs Team)
   <h1>Silaeder Conferece</h1></div>
 
 <br>
