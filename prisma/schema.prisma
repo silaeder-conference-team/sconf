@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            Int               @id @default(autoincrement())
+  name          String
+  email         String
+  password_hash String
+  isOrganisator Boolean
+  isStudent     Boolean
+  isTutor       Boolean
+  tutoringProjects Project[]
+  projects      ProjectsOnUsers[]
+}
+
+model Project {
+  id              Int               @id @default(autoincrement())
+  name            String
+  description     String
+  section         String
+  timeForSpeech   Int
+  schedulePos     Int
+  active          Boolean
+  tutorId         Int?
+  tutor           User?            @relation(fields: [tutorId], references: [id])
+  conferenceId    Int?
+  grade           Int
+  isHidden        Boolean           @default(false)
+  Conference      Conference?       @relation(fields: [conferenceId], references: [id])
+  users           ProjectsOnUsers[]
+  additionalUsers String            @default("")
+}
+
+model ProjectsOnUsers {
+  projectId Int
+  userId    Int
+  project   Project @relation(fields: [projectId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
+
+  @@id([projectId, userId])
+}
+
+model Conference {
+  id      Int       @id @default(autoincrement())
+  name    String
+  start   DateTime
+  break   Break[]
+  project Project[]
+}
+
+model Break {
+  id           Int         @id @default(autoincrement())
+  time         Int
+  schedulePos  Int
+  conferenceId Int?
+  Conference   Conference? @relation(fields: [conferenceId], references: [id])
+}
