@@ -20,3 +20,20 @@
  - **Просмотрщик Презентаций**: [OnlyOffice](https://www.onlyoffice.com/ru/)
  
 
+<h1 algin="center">Как задеплоить</h1>
+клонируем на сервер, открываем docker-compose.yml и меняем пароль от базы.
+ 
+Создаем файл .env
+
+В него нужно написать:
+
+```bash
+DATABASE_URL=postgresql://postgres:<пароль_от_базы>@sconf-postgres-1:5432/postgres?schema=public 
+NEXT_PUBLIC_PUBLIC_KEY=hbosMHJVjTXZDIW8f 
+NEXT_PUBLIC_SERVICE_ID=service_eb38uhw 
+NEXT_PUBLIC_TEMPLATE_ID=template_gm6y03o 
+NEXT_PUBLIC_ONLYOFFICE_CONNECTION_URL=http://server.silaeder.ru:12010 
+NEXT_PUBLIC_FILEUPLOADER_URL=http://server.silaeder.ru:12002 
+NEXT_PUBLIC_RECAPTCHA_TOKEN=<ключ_рекапча_сайта> 
+RECAPTCHA_SERVER_TOKEN=<ключ_рекапча_сервера>
+```
