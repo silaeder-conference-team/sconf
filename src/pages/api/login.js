@@ -15,14 +15,14 @@ export default async function handler(req, res) {
             }
         });
 
-        let response = await fetch(`https://www.google.com/recaptcha/api/siteverify`, {
+        const response = await fetch(`https://www.google.com/recaptcha/api/siteverify`, {
             method: 'POST',
             body: new URLSearchParams({
                 secret: process.env.RECAPTCHA_SERVER_TOKEN,
                 response: captureResponse
             })
         })
-        let json_response = await response.json();
+        const json_response = await response.json();
 
         if ((user.length !== 0) && (user[0].password_hash === password_hash) && (json_response.success)) {
             const token = jwt.sign({ip: ip, user_id: user[0].id}, password_hash);
