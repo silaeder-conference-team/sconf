@@ -1,0 +1,35 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+     - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=oiego203thoeisdf
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - postgresdb:/var/lib/postgresql/data
+  app:
+    image: sconf
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    ports:
+     - 3000:3000
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+     - 80:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=stepin@hig.com
+      - PGADMIN_DEFAULT_PASSWORD=stepin
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  postgresdb:

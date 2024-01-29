@@ -1,0 +1,4 @@
+**/postgresdb
+**/node_modules
+**/.next
+server.js
