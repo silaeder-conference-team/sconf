@@ -1,0 +1,23 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "sconf db",
+            "Group": "Servers",
+            "Host": "sconf-postgres-1",
+            "Port": 5432,
+            "MaintenanceDB": "postgres",
+            "Username": "postgres",
+            "SharedUsername": "postgres",
+            "UseSSHTunnel": 0,
+            "TunnelPort": "22",
+            "TunnelAuthentication": 0,
+            "KerberosAuthentication": false,
+            "ConnectionParameters": {
+                "sslmode": "prefer",
+                "connect_timeout": 10,
+                "sslcert": "<STORAGE_DIR>/.postgresql/postgresql.crt",
+                "sslkey": "<STORAGE_DIR>/.postgresql/postgresql.key"
+            }
+        }
+    }
+}

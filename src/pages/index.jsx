@@ -151,9 +151,6 @@ const Index = () => {
         console.log(json.project.users);
         json.project.users.forEach((x) => {
             users.push(x.userId);
-            if (tutors.includes(x.userId)) {
-                users.remove(x.userId);
-            }
         })
         let new_json = Object.assign(json.project, {"conference": json.project.conferenceId.value, "users": users, "tutor": current_tutor})
         json.project = new_json;

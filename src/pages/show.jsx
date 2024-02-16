@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 export default function App() {
     const connection_url = process.env.NEXT_PUBLIC_ONLYOFFICE_CONNECTION_URL;
     const fileuploader_url = process.env.NEXT_PUBLIC_FILEUPLOADER_URL;
+    const onlyoffice_fileupploader_url = process.env.NEXT_PUBLIC_LOCALFILEUPLOADER_URL;
 
     const router = useRouter();
     const prj_id = router.query.prj_id;
@@ -37,7 +38,7 @@ export default function App() {
                         "fileType": extName,
                         "key": prj_id,
                         "title": "Presentation",
-                        "url": fileuploader_url+"/get-presentation?prj_id="+prj_id
+                        "url": onlyoffice_fileupploader_url +"/get-presentation?prj_id="+prj_id
                     },
                     "editorConfig": {
                         "mode": "view",
