@@ -12,11 +12,9 @@ import { useForm } from '@mantine/form';
 
 const start_data = [
 ];
-
 const Schedule = () => {
 
     const columns = useMemo(
-        //column definitions...
         () => [
             {
                 accessorKey: 'time',
@@ -97,7 +95,7 @@ const Schedule = () => {
 
             setIs_loaded(true)
 
-            fetch('/api/getScheduleForConferenceID', {
+            fetch('/api/getSchedule', {
                 method: 'POST',
                 body: JSON.stringify({ id: Number(router.query.schedule) }),
                 headers: {
@@ -160,7 +158,7 @@ const Schedule = () => {
             console.error(e);
         })
 
-        fetch('/api/getScheduleForConferenceID', {
+        fetch('/api/getSchedule', {
             method: 'POST',
             body: JSON.stringify({ id: Number(router.query.schedule) }),
             headers: {
@@ -260,17 +258,10 @@ const Schedule = () => {
                             let output = [];
 
                             data.forEach((el, idx) => {
-                                if (el.name_of_project === "Перерыв") {
-                                    output.push({
-                                        type: "break",
-                                        id: el.id,
-                                    })
-                                } else {
-                                    output.push({
-                                        type: "project",
-                                        id: el.id,
-                                    })
-                                }
+                                output.push({
+                                    type: "project",
+                                    id: el.id,
+                                })
                             })
 
                             fetch('/api/saveProjectsAndBreaks', {
@@ -280,7 +271,7 @@ const Schedule = () => {
                                     'Content-Type': 'application/json'
                                 }
                             }).then((data) => {
-                                fetch('/api/getScheduleForConferenceID', {
+                                fetch('/api/getSchedule', {
                                     method: 'POST',
                                     body: JSON.stringify({ id: Number(router.query.schedule) }),
                                     headers: {

@@ -148,11 +148,11 @@ const Index = () => {
         console.log(json);
         let current_tutor = json.project.tutorId;
         let users = Array([]);
-        console.log(json.project.users);
+        console.log(json.project);
         json.project.users.forEach((x) => {
             users.push(x.userId);
         })
-        let new_json = Object.assign(json.project, {"conference": json.project.conferenceId.value, "users": users, "tutor": current_tutor})
+        let new_json = Object.assign(json.project, {"conference": json.project.conferenceId.value, "users": users, "tutor": current_tutor, "additional_users": json.project.additionalUsers})
         json.project = new_json;
         return json;
     }

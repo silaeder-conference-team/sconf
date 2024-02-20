@@ -74,7 +74,7 @@ export default function Auth() {
             
                 <Paper withBorder shadow="md" p={25} mt={30} radius="md">
 
-                   <SegmentedControl fullWidth data={['Войти', 'Создать аккаунт']} value={"Создать аккаунт"} onChange={(x) => {router.push("/auth")}} />
+                   <SegmentedControl fullWidth data={['Войти', 'Создать аккаунт']} value={"Создать аккаунт"} onChange={(x) => {router.push("/auth"); window.location.reload(false)}} />
 
                         <form onSubmit={form.onSubmit((values) => register(values.name, values.email, values.password))}>
                             <Space h="lg" />
@@ -97,7 +97,7 @@ export default function Auth() {
                     </Center>
                     
                     <Button type="submit" fullWidth mt="xl" href={'/'} color={"indigo.4"}>
-                        Войти
+                        Создать Аккаунт
                     </Button>
 
 

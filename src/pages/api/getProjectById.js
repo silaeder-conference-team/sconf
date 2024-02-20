@@ -14,7 +14,7 @@ export default async function getProjectById(req, res) {
     const projects = []
     for (const project of all_projects) {
         // console.log(project.users[0].projectId, id, user_id)
-        if ((project.id === id)) {
+        if ((project.id == id)) {
             const c_id = project.conferenceId
             const conference = await prisma.conference.findFirst({
                 where: {

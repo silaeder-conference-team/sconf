@@ -10,7 +10,11 @@ export default async function getProjectsByConferenceID(req, res) {
             project: true
         }
     })
-    conference[0].project.sort((a, b) => {return a.schedulePos - b.schedulePos})
+    conference[0].project.sort((a, b) => {
+	if (a.schedulePos < b.schedulePos) {
+		return -1
+	} else { return 1 }
+    })
 
     res.status(200).json({ projects: conference[0].project })
-}   
+}

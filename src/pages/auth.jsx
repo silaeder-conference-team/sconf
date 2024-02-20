@@ -56,7 +56,7 @@ export default function Auth() {
     }
 
     return (
-        <Container size={420} my={40}>
+        <Container size={419} my={40}>
             
             <Title
                 align="center"
@@ -71,7 +71,7 @@ export default function Auth() {
             
                 <Paper withBorder shadow="md" p={25} mt={30} radius="md">
 
-                   <SegmentedControl fullWidth data={['Войти', 'Создать аккаунт']} onChange={(x) => {router.push("/register")}} />
+                   <SegmentedControl fullWidth data={['Войти', 'Создать аккаунт']} onChange={(x) => {router.push("/register"); window.location.reload(false)}} />
 
 
                    <form onSubmit={form.onSubmit((values) => login(values.email, values.password))}>
