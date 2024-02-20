@@ -19,8 +19,7 @@ export default function Project() {
     const [prjDesc, setPrjDesc] = useState("");
     const [userIter, setUserIter] = useState("");
     const [users, setUsers] = useState("");
- 
-    
+    useEffect(() => { 
         fetch('/api/getProjectById', {
             method: 'post',
             body: JSON.stringify({
@@ -43,7 +42,8 @@ export default function Project() {
 			  } setUsers(usors)
 			 console.log(usors)
 			})
-		}})
+	    console.log(users);
+		}})}, [users]);
     
 
 

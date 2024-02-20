@@ -7,7 +7,7 @@ import {
     IconPlayerPlay, IconPlus
 } from '@tabler/icons-react';
 import { redirect } from 'next/dist/server/api-utils';
-import { IconEyeOff } from '@tabler/icons-react';
+import { IconEyeOff, IconExternalLink } from '@tabler/icons-react';
 import { useForm } from '@mantine/form';
 
 const start_data = [
@@ -36,8 +36,9 @@ const Schedule = () => {
         //end
     );
     const router = useRouter();
-    const handleClick = () => {
-        router.push('/demonstrateProject');
+    const handleClick = (e) => {
+	console.log(e)
+        
     };
     const presentClick = (row) => {
         router.push('/show?prj_id='+row.original.id);
@@ -93,7 +94,7 @@ const Schedule = () => {
 
             const perm = data.permission;
 
-            setIs_loaded(true)
+            setIs_loaded(true)/
 
             fetch('/api/getSchedule', {
                 method: 'POST',
@@ -226,6 +227,13 @@ const Schedule = () => {
                         <Button color={"indigo.4"} variant={"outline"} leftIcon={<IconPlayerPlay height={30} width={40} color={"#748FFC"} />}
                                 onClick={() => {presentClick(row)}} pl={'6%'} pr={'3%'}>
                         </Button>
+
+</Tooltip>
+			<Tooltip label={"Открыть страницу"} transitionProps={{ transition: 'slide-up', duration: 300 }} withArrow={true} color={"rgba(0.3, 0.3, 0.3, 0.6)"}>
+                        <Button color={"indigo.4"} variant={"outline"} leftIcon={<IconExternalLink height={30} width={40} color={"#748FFC"} />}
+                                onClick={() => {router.push('/project/'+row.original.id)}} pl={'6%'} pr={'3%'}>
+                        </Button>
+
                     </Tooltip>
                     <Tooltip label={row.original.hidden ? "Показать проект" : "Скрыть проект"} transitionProps={{ transition: 'slide-up', duration: 300 }} withArrow={true} color={"rgba(0.3, 0.3, 0.3, 0.6)"}>
                         <Button color={"indigo.4"} variant={"outline"} pl={'6%'} pr={'3%'} strokeWidth={10}

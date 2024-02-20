@@ -3,8 +3,6 @@ import { prisma } from "./_prisma_base";
 
 export default async function getProjectById(req, res) {
     const id = JSON.parse(req.body).id
-    const jwt = getCookie('auth_token', { req, res })
-    const user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
     const all_projects = await prisma.project.findMany({
         include: {
             users: true
