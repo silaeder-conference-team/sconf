@@ -349,9 +349,8 @@ const Index = () => {
                     </Dropzone>
                     <Dropzone mb={'2%'}
                               onDrop={setPresentation}
-                              accept={['application/vnd.ms-powerpoint',
-                                  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-                              'application/pdf']}>
+                              accept={[
+                                  'application/vnd.openxmlformats-officedocument.presentationml.presentation']}>
                         <Group position="center" spacing="xl" style={{ minHeight: rem(100), pointerEvents: 'none' }}>
                             {presentation.length === 0 ?
                                 <>
