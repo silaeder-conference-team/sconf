@@ -17,6 +17,7 @@ import {setCookie} from "cookies-next";
 import MD5 from "crypto-js/md5";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Link } from 'next/link';
 
 export default function Auth() {
     const router = useRouter()
@@ -62,7 +63,7 @@ export default function Auth() {
                 align="center"
                 sx={(theme) => ({fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900})}
             >
-                Авторизуйтесь
+                Войти
             </Title>
             <Text color="dimmed" size="sm" align="center" mt={5}>
                 Если вы уже использовали платформу то войдите в свой аккаунт, в противном случае содайте его.
@@ -71,11 +72,8 @@ export default function Auth() {
             
                 <Paper withBorder shadow="md" p={25} mt={30} radius="md">
 
-                   <SegmentedControl fullWidth data={['Войти', 'Создать аккаунт']} onChange={(x) => {router.push("/register"); window.location.reload(false)}} />
-
-
+                
                    <form onSubmit={form.onSubmit((values) => login(values.email, values.password))}>
-                    <Space h="lg" />
                     <TextInput label="Эл. почта" placeholder="jhondoe@example.com"
                                required {...form.getInputProps('email')} />
                     <PasswordInput label="Пароль" placeholder="Password" required
@@ -104,9 +102,14 @@ export default function Auth() {
                     <Button type="submit" fullWidth mt="xl" href={'/'} color={"indigo.4"}>
                         Войти
                     </Button>
-                
-                    </form>
-
+	    </form>
+	    <Space h="sm" />
+		     <Anchor component="button" size="sm" align="right">
+                        <a href="/register" style={{textDecoration: 'none', color: "#748FFC"}}>
+                            У меня нет аккаунта
+                        </a>
+                    </Anchor>
+ 
                 </Paper>
         </Container>
     );

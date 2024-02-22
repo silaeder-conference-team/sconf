@@ -22,25 +22,25 @@ export default function Auth() {
     const router = useRouter();
     const form = useForm({
         initialValues: {
-            name: '',
+            fio: '',
             email: '',
             password: ''
         },
 
         validate: {
             email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-            name: (value) => (/^(?:[А-Я][а-я]*\s?){2,}$/.test(value) ? null : 'Invalid name'),
+            fio: (value) => (/^(?:[А-Я][а-я]*\s?){2,}$/.test(value) ? null : 'Invalid name'),
         },
     });
 
-    async function register(name, email, password) {
+    async function register(fio, email, password) {
         const captureResponse = grecaptcha.getResponse();
         if (!captureResponse.length > 0) return
 
         let res = await fetch("/api/register", {
             method: "post",
             body: JSON.stringify({
-                name: name,
+                name: fio,
                 email: email,
                 password_hash:  MD5(password).toString(),
                 captureResponse : captureResponse,
@@ -65,7 +65,7 @@ export default function Auth() {
                 align="center"
                 sx={(theme) => ({fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900})}
             >
-                Авторизуйтесь
+                Создайте аккаунт
             </Title>
             <Text color="dimmed" size="sm" align="center" mt={5}>
                 Если вы уже использовали платформу то войдите в свой аккаунт, в противном случае содайте его.
@@ -74,12 +74,10 @@ export default function Auth() {
             
                 <Paper withBorder shadow="md" p={25} mt={30} radius="md">
 
-                   <SegmentedControl fullWidth data={['Войти', 'Создать аккаунт']} value={"Создать аккаунт"} onChange={(x) => {router.push("/auth"); window.location.reload(false)}} />
 
-                        <form onSubmit={form.onSubmit((values) => register(values.name, values.email, values.password))}>
-                            <Space h="lg" />
+                        <form onSubmit={form.onSubmit((values) => register(values.fio, values.email, values.password))}>
                     <TextInput label="ФИО" placeholder="Максим Таран Владимирович"
-                        required {...form.getInputProps('name')} />
+                        required {...form.getInputProps('fio')} />
                     <TextInput label="Эл. почта" placeholder="jhondoe@example.com"
                                required {...form.getInputProps('email')} />
                     <PasswordInput label="Пароль" placeholder="Password" required
@@ -102,6 +100,12 @@ export default function Auth() {
 
 
                         </form>
+			<Space h="sm" />
+		     <Anchor component="button" size="sm" align="right">
+                        <a href="/auth" style={{textDecoration: 'none', color: "#748FFC"}}>
+                            У меня уже есть аккаунт
+                        </a>
+                    </Anchor>
                 </Paper>
         </Container>
     );
