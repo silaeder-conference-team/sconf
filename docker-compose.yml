@@ -4,16 +4,20 @@ services:
     image: onlyoffice/documentserver
     environment:
       - JWT_ENABLED=false
+#      - LETS_ENCRYPT_MAIL=tmasik.t.210@gmail.com
+#      - LETS_ENCRYPT_DOMAIN=bamaec.ru
     ports:
-     - 8090:80
+     - 11115:80
+     - 11114:443
     volumes:
      - onlyofficeetc:/etc/onlyoffice/documentserver
      - onlyofficedb:/var/lib/postgresql
+     - onlyofficedata:/var/www/onlyoffice/Data
   postgres:
     image: postgres
     restart: always
     ports:
-     - 5432:5432
+     - 11111:5432
     environment:
       - POSTGRES_PASSWORD=thepassword
       - POSTGRES_USER=postgres
@@ -31,7 +35,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     ports:
-     - 80:80
+     - 11113:80
     environment:
       - PGADMIN_DEFAULT_EMAIL=stepin@hig.com
       - PGADMIN_DEFAULT_PASSWORD=stepin
@@ -40,7 +44,9 @@ services:
   fileuploader:
     image: tmasikt/sconf-file-uploader
     ports:
-     - 8070:8080
+     - 8080:8080
+    volumes:
+     - presentations:/app/presentations
 
 
 networks:
@@ -52,3 +58,5 @@ volumes:
   onlyofficeetc:
   onlyofficecache:
   onlyofficedb:
+  presentations:
+  onlyofficedata:
