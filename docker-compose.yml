@@ -12,7 +12,6 @@ services:
     volumes:
      - onlyofficeetc:/etc/onlyoffice/documentserver
      - onlyofficedb:/var/lib/postgresql
-     - onlyofficedata:/var/www/onlyoffice/Data
   postgres:
     image: postgres
     restart: always
@@ -29,7 +28,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: dev
+      target: deploy
     ports:
      - 3000:3000
   pgadmin:
