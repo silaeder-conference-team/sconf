@@ -28,11 +28,11 @@
 
 ```bash
 DATABASE_URL=postgresql://postgres:<пароль_от_базы>@sconf-postgres-1:5432/postgres?schema=public 
-NEXT_PUBLIC_PUBLIC_KEY=stepin 
-NEXT_PUBLIC_SERVICE_ID=stepin 
-NEXT_PUBLIC_TEMPLATE_ID=stepin
+NEXT_PUBLIC_PUBLIC_KEY=<emailjs-public-key> 
+NEXT_PUBLIC_SERVICE_ID=<emailjs-service-id>
+NEXT_PUBLIC_TEMPLATE_ID=<emailjs-template-id>
 NEXT_PUBLIC_ONLYOFFICE_CONNECTION_URL=http://server.silaeder.ru:12010 
 NEXT_PUBLIC_FILEUPLOADER_URL=http://server.silaeder.ru:12002 
-NEXT_PUBLIC_RECAPTCHA_TOKEN=<ключ_рекапча_сайта> 
-RECAPTCHA_SERVER_TOKEN=<ключ_рекапча_сервера>
+NEXT_PUBLIC_RECAPTCHA_TOKEN=<captcha_token> 
+RECAPTCHA_SERVER_TOKEN=<captcha_server_token>
 ```
