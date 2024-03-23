@@ -192,7 +192,7 @@ const Index = () => {
                 align="center"
                 sx={(theme) => ({ fontFamily: `Greycliff sans-serif, ${theme.fontFamily}`, fontWeight: 900 })}
             >
-                Редактирование проекта
+                PODLENOK STEPON STRUCHPIK
             </Title>
             <Space h="xl" />
             <Grid grow>
