@@ -72,7 +72,7 @@ export default async function CreateProject(req, res) {
             })
         });
     } catch {
-        console.log('какой то  подстепин не правильно заполнил форму')
+        console.log('Форма не заполнена')
     }
         
 

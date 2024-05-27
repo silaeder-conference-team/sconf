@@ -23,7 +23,8 @@ export default async function handler(req, res) {
                         jwt.verify(token, user[0].password_hash);
 
                         res.status(200).json({
-                            status: "ok"
+                            status: "ok",
+                            user: user[0]
                         });
                     } catch (e) {
                         res.status(200).json({

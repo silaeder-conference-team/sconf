@@ -16,6 +16,7 @@ const Index = () => {
     const [ tutors, setTutor ] = useState([]);
     const [ authorized, setAuthorized ] = useState(false);
     const [ userProjects, setUserProjects ] = useState([])
+    const [ isAdmin, setAdmin ] = useState(false)
     const form = useForm();
     const router = useRouter();
 
@@ -55,6 +56,11 @@ const Index = () => {
         checkLogin().then((data) => {
             if (data.status === 'ok') {
                 setAuthorized(true)
+                if (data.user.isOrganisator) {
+                    setAdmin(true)
+                } else {
+                    console.log(data.user)
+                }
             } else {
                 window.location.href = '/auth'
             }
@@ -192,7 +198,7 @@ const Index = () => {
                 align="center"
                 sx={(theme) => ({ fontFamily: `Greycliff sans-serif, ${theme.fontFamily}`, fontWeight: 900 })}
             >
-                PODLENOK STEPON STRUCHPIK
+                
             </Title>
             <Space h="xl" />
             <Grid grow>
@@ -232,8 +238,8 @@ const Index = () => {
                         {...form.getInputProps('conference')}
                         required
                     />
-                    <NumberInput label="Класс участников"
-                               placeholder="Запишите средний класс участников"
+                    <NumberInput label="Класс главного участника"
+                               placeholder="Запишите класс"
                                {...form.getInputProps('grade')}
                                required />
                     <MultiSelect
@@ -391,7 +397,10 @@ const Index = () => {
                 }
                 <Divider orientation="vertical"/>
                 <Container sx={{width: '50vh'}}>
-                    <Button mb={'5%'} color={'indigo.6'} fullWidth onClick={handleClick}> Создать новый проект </Button>
+                    { isAdmin &&
+                    <Button mb={'5%'} color={'orange.4'} fullWidth onClick={() => router.push('/admin_page')}> Перейти на панель администратора </Button>
+                    }
+                    <Button mb={'5%'} color={'indigo.3'} fullWidth onClick={handleClick}> Создать новый проект </Button>
                     <SimpleGrid cols={1} spacing="xs" verticalSpacing="xs">
                         { userProjects.map(project => (
                             <ProjectCard key={project.id} name={project.name} description={project.description} projectId={project.id}
