@@ -75,17 +75,14 @@ const Admin_page = () => {
                 <Checkbox
                     label="Сделать научным руководителем"
                     onChange={(e) => {setTutor(e.target.checked); }}
-                    required
                 />
                 <Checkbox
                     label="Сделать администратором"
                     onChange={(e) => {setOrganizer(e.target.checked); }}
-                    required
                 />
                 <Checkbox
                     label="Сделать учеником"
                     onChange={(e) => {setStudent(e.target.checked); }}
-                    required
                 />
                 <Button type={ "submit" } color={'indigo.6'}>Сохранить</Button>
             </form>
