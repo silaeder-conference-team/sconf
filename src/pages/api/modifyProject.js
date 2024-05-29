@@ -4,8 +4,6 @@ import { getCookie } from "cookies-next";
 export default async function CreateProject(req, res) {
     if (req.method === "POST") {
         const { name, description, time_for_speech, grade, section, conference_id, members, tutor_id } = req.body
-        const users = [
-        ]
         try {
         const jwt = getCookie('auth_token', { req, res })
         const user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
@@ -40,7 +38,6 @@ export default async function CreateProject(req, res) {
         if (!members.includes(user_id)) {
             members.push(user_id);
         }
-    
         await prisma.project.update({
             where: {
                 id: req.body.project_id,

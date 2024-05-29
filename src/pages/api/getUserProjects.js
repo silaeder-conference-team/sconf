@@ -18,7 +18,6 @@ export default async function getUserProjects(req, res) {
                 }
             })
         })
-
         await res.status(200).json({ projects: projects })
     }
 }

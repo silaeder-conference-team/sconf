@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "linux-arm64-openssl-3.0.x"]
 }
 
@@ -9,15 +9,15 @@ datasource db {
 }
 
 model User {
-  id            Int               @id @default(autoincrement())
-  name          String
-  email         String
-  password_hash String
-  isOrganisator Boolean
-  isStudent     Boolean
-  isTutor       Boolean
+  id               Int               @id @default(autoincrement())
+  name             String
+  email            String
+  password_hash    String
+  isOrganisator    Boolean
+  isStudent        Boolean
+  isTutor          Boolean
   tutoringProjects Project[]
-  projects      ProjectsOnUsers[]
+  projects         ProjectsOnUsers[]
 }
 
 model Project {
@@ -29,10 +29,11 @@ model Project {
   schedulePos     Int
   active          Boolean
   tutorId         Int?
-  tutor           User?            @relation(fields: [tutorId], references: [id])
+  tutor           User?             @relation(fields: [tutorId], references: [id])
   conferenceId    Int?
   grade           Int
   isHidden        Boolean           @default(false)
+  isInShowerCase  Boolean           @default(false)
   Conference      Conference?       @relation(fields: [conferenceId], references: [id])
   users           ProjectsOnUsers[]
   additionalUsers String            @default("")

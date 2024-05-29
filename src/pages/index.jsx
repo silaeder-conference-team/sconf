@@ -1,5 +1,6 @@
-import {Grid, Textarea, Text, Title, MultiSelect, Container, Space, Divider, SimpleGrid, TextInput, Autocomplete,
-    Button, Checkbox, NumberInput, Select, Flex, Image, Loader, Group, useMantineTheme, rem
+import {
+    Grid, Textarea, Text, Title, MultiSelect, Container, Space, Divider, SimpleGrid, TextInput, Autocomplete,
+    Button, Checkbox, NumberInput, Select, Flex, Image, Loader, Group, useMantineTheme, rem, Center
 } from '@mantine/core';
 import { useForm } from '@mantine/form'
 import {useEffect, useState} from "react";
@@ -16,6 +17,7 @@ const Index = () => {
     const [ tutors, setTutor ] = useState([]);
     const [ authorized, setAuthorized ] = useState(false);
     const [ userProjects, setUserProjects ] = useState([])
+    const [ projects, setProjects ] = useState([])
     const [ isAdmin, setAdmin ] = useState(false)
     const form = useForm();
     const router = useRouter();
@@ -27,6 +29,10 @@ const Index = () => {
         }
         const fetchingProjects = async () => {
             const x = await fetch('/api/getUserProjects');
+            return await x.json()
+        }
+        const fetchingAllProjects = async () => {
+            const x = await fetch('/api/getNotUserProjects');
             return await x.json()
         }
         const fetchingTutors = async () => {
@@ -53,6 +59,9 @@ const Index = () => {
         fetchingProjects().then((data) => {
             setUserProjects(data.projects)
         })
+        fetchingAllProjects().then((data) => {
+            setProjects(data.projects)
+        })
         checkLogin().then((data) => {
             if (data.status === 'ok') {
                 setAuthorized(true)
@@ -73,7 +82,6 @@ const Index = () => {
     const [image, setImage] = useState([]);
     const [presentation, setPresentation] = useState([]);
     const [video, setVideo] = useState([]);
-    const [scale, setScale] = useState(1)
 
     const addProject = async (values, wasProject) => {
         let users = values.users;
@@ -134,6 +142,14 @@ const Index = () => {
         changePoint(false)
     }
     const [wasProject, changePoint] = useState(false)
+    async function deleteProject(project_id) {
+        await fetch('/api/deleteProjectByID', {
+            method: "POST",
+            body: JSON.stringify({
+                id: project_id
+            })
+        });
+    }
     async function redact(id) {
         change_state(true);
         setCurrentProject(id);
@@ -223,7 +239,7 @@ const Index = () => {
                         withAsterisk
                         {...form.getInputProps('description')}
                     />
-                    <Select data={tutors} label="Научный руководитель" placeholder="Старунова Ольга Александровна" {...form.getInputProps('tutor')} required />
+                    <Select data={tutors} searchable label="Научный руководитель" placeholder="Старунова Ольга Александровна" {...form.getInputProps('tutor')} required />
                     <Autocomplete
                         label="Секция"
                         placeholder="Начните писать"
@@ -236,6 +252,7 @@ const Index = () => {
                         placeholder="Выберите конференцию, на которую вы хотите загрузить проект"
                         data={conferences}
                         {...form.getInputProps('conference')}
+                        searchable
                         required
                     />
                     <NumberInput label="Класс главного участника"
@@ -401,13 +418,34 @@ const Index = () => {
                     <Button mb={'5%'} color={'orange.4'} fullWidth onClick={() => router.push('/admin_page')}> Перейти на панель администратора </Button>
                     }
                     <Button mb={'5%'} color={'indigo.3'} fullWidth onClick={handleClick}> Создать новый проект </Button>
+                    <Center m={'3%'}><Title>Ваши проекты</Title></Center>
+                    {userProjects.length === 0 && <Center><Title>...</Title></Center>}
                     <SimpleGrid cols={1} spacing="xs" verticalSpacing="xs">
                         { userProjects.map(project => (
                             <ProjectCard key={project.id} name={project.name} description={project.description} projectId={project.id}
                                          section={project.section} editFunc={async (id) => {const result = (await redact(id)).project; setProjectInformation(result); form.setValues(result)}}
-                                         openPresentation={(project_id) => {router.push("/show?prj_id="+project_id)}} />
+                                         openPresentation={(project_id) => {router.push("/show?prj_id="+project_id)}}
+                                         deleteProject={(project_id) => deleteProject(project_id)}
+                            />
                         ))}
+
                     </SimpleGrid>
+                    { isAdmin &&
+                        <>
+                            <Center m={'3%'}>
+                                <Title>Не ваши проекты</Title>
+                            </Center>
+                        <SimpleGrid cols={1} spacing="xs" verticalSpacing="xs">
+                    { projects.map(project => (
+                        <ProjectCard key={project.id} name={project.name} description={project.description} projectId={project.id}
+                        section={project.section} editFunc={async (id) => {const result = (await redact(id)).project; setProjectInformation(result); form.setValues(result)}}
+                        openPresentation={(project_id) => {router.push("/show?prj_id="+project_id)}}
+                        />
+
+                        ))}
+                        </SimpleGrid>
+                        </>
+                        }
                 </Container>
             </Grid>
             </> : <>

@@ -1,5 +1,5 @@
 import { Card, Text, Badge, Button, Group } from '@mantine/core';
-export function ProjectCard({name, section, description, editFunc, openPresentation, projectId}) {
+export function ProjectCard({name, section, description, editFunc, openPresentation, projectId, deleteProject}) {
     return (
         <Card shadow="sm" padding="lg" radius="md" sx={{width: "100%"}} withBorder>
 
@@ -23,6 +23,11 @@ export function ProjectCard({name, section, description, editFunc, openPresentat
             <Button variant="light" color="indigo.4" mt="md" radius="md" onClick={() => {openPresentation(projectId)}}>
                     Просмотреть презентацию
                 </Button>
+            {deleteProject &&
+            <Button variant="light" color="red.3" mt="md" radius="md" onClick={() => {deleteProject(projectId)}}>
+                 Удалить проект
+            </Button>
+            }
         </Card>
     )
 }
