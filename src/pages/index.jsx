@@ -167,10 +167,10 @@ const Index = () => {
             tutors.push(x.value);
         })
         const json = await res.json();
-        console.log(json);
+        // console.log(json);
         let current_tutor = json.project.tutorId;
         let users = Array([]);
-        console.log(json.project);
+        // console.log(json.project);
         json.project.users.forEach((x) => {
             users.push(x.userId);
         })
@@ -229,6 +229,10 @@ const Index = () => {
                         напишите хотя бы 1 абзац, загрузите картинку проекта. <br />При вводе участиков, начните писать имя
                         участника и начнется поиск по всем ученикам Силаэдра. В список участников руководитель не входит! <br />Так же, если человек не из Силаэдра или
                         у него нет аккаунта, то можно добавить человека без аккаунта. <br />
+                        При вводе секции попробуйте найти свой предмет. Если будет что-то, соответсветствующее вашему проекта, выбирайте это, <br />
+                        при полном несоответствии секциям можете написать свой вариант. <br />
+                        Конференции будут называться в соответствии с времением делания проектов, например, Летняя практика 2024. <br />
+                        Если ничего похожего нет, нужно выбрать вариант "Никакая конференция".
                     </Text>
                     <Space h="xl" />
                     <form onSubmit={form.onSubmit((values) => addProject(values, wasProject))}>
@@ -243,7 +247,8 @@ const Index = () => {
                     <Autocomplete
                         label="Секция"
                         placeholder="Начните писать"
-                        data={['Информатика', 'Биология', 'Программирование', 'Математика', 'История', 'Литература', 'География', 'Обществознание', 'Английский язык']}
+                        data={['Информатика и программирование', 'Биология, география и химия', 'Математика',
+                            'История, социология и политология', 'Филология и лингвистика', 'Экономика', 'Английский язык']}
                         {...form.getInputProps('section')}
                         required
                     />
@@ -280,9 +285,13 @@ const Index = () => {
                                {...form.getInputProps('additional_users')}
                     />
                     <Space h="lg" />
+                    <Text color="dimmed">Загрузите ниже фото или скрин вашего проекта. Это должно быть самым красивым, самым главным,
+                        что хотелось бы показать. Данное вами изображение будет на странице вашего проекта и, если повезёт,
+                        на витрине проекта, поэтому есть ограничение. Изображение должно быть горизонтальным и формы листа А5.</Text>
                     <Dropzone mb={'2%'} aria-required
                         onDrop={(files) => {setImage(files)}}
                         maxSize={3 * 1024 ** 2}
+                        maxFiles={1}
                         accept={IMAGE_MIME_TYPE}>
                         <Group position="center" spacing="xl" style={{ minHeight: rem(100), pointerEvents: 'none' }}>
                             {previewsImage.length === 0 &&
@@ -323,9 +332,12 @@ const Index = () => {
                             </div>
                         </Group>
                     </Dropzone>
+                    <Text color="dimmed">Это видео будет храниться и показываться отдельно от презенации. В самой презентации также могут
+                        быть видео. Но здесь, как и в случае изображения должно быть самое главное.</Text>
                     <Dropzone mb={'2%'}
                               onDrop={(files) => {setVideo(files)}}
                               maxSize={20 * 1024 ** 2}
+                              maxFiles={1}
                               accept={{
                                   'video/*': []
                               }}>
@@ -370,7 +382,9 @@ const Index = () => {
                             </div>
                         </Group>
                     </Dropzone>
-                    <Dropzone mb={'2%'}
+                    <Text color="dimmed">Загрузите ниже презентацию. Она будет показана на конференции. После загрузки можно будет посмотреть на
+                        вид получившейся презентации.</Text>
+                    <Dropzone mb={'2%'} maxFiles={1}
                               onDrop={setPresentation}
                               accept={[
                                   'application/vnd.openxmlformats-officedocument.presentationml.presentation']}>

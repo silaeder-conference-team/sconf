@@ -12,12 +12,12 @@ export const config = {
 const post = async (req, res) => {
     const form = new formidable.IncomingForm();
     await form.parse(req, async function (err, fields, files) {
-        await saveFile(files.file, fields.type, fields.id, fields.wasProject);
+        await saveFile(files.file, fields.type, fields.id);
         return res.status(201).send("");
     });
 };
 
-const saveFile = async (file, type, id, wasProject) => {
+const saveFile = async (file, type, id) => {
     console.log(file);
     console.log(file.originalFilename);
     if (fsExists(`./public/${type}/${id}${path.extname(file.originalFilename)}`)) {

@@ -18,7 +18,7 @@ export default async function handler(req, res) {
                     }
                 });
 
-                if (user.length !== 0) {
+                if (user.length !== 0 && user[0].isDeleted === false) {
                     try {
                         jwt.verify(token, user[0].password_hash);
 

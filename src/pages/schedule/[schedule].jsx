@@ -223,18 +223,19 @@ const Schedule = () => {
                     flexWrap: 'nowrap',
                     gap: '8px'
                 }}>
+                    <Tooltip label={"Открыть страницу"} transitionProps={{ transition: 'slide-up', duration: 300 }} withArrow={true} color={"rgba(0.3, 0.3, 0.3, 0.6)"}>
+                        <Button color={"indigo.4"} variant={"outline"} leftIcon={<IconExternalLink height={30} width={40} color={"#748FFC"} />}
+                                onClick={() => {router.push('/project/'+row.original.id)}} pl={'6%'} pr={'3%'}>
+                        </Button>
+
+                    </Tooltip>
                     {permission ? <><Tooltip label={"Открыть презентацию"} transitionProps={{ transition: 'slide-up', duration: 300 }} withArrow={true} color={"rgba(0.3, 0.3, 0.3, 0.6)"}>
                         <Button color={"indigo.4"} variant={"outline"} leftIcon={<IconPlayerPlay height={30} width={40} color={"#748FFC"} />}
                                 onClick={() => {presentClick(row)}} pl={'6%'} pr={'3%'}>
                         </Button>
 
 </Tooltip>
-			<Tooltip label={"Открыть страницу"} transitionProps={{ transition: 'slide-up', duration: 300 }} withArrow={true} color={"rgba(0.3, 0.3, 0.3, 0.6)"}>
-                        <Button color={"indigo.4"} variant={"outline"} leftIcon={<IconExternalLink height={30} width={40} color={"#748FFC"} />}
-                                onClick={() => {router.push('/project/'+row.original.id)}} pl={'6%'} pr={'3%'}>
-                        </Button>
 
-                    </Tooltip>
                     <Tooltip label={row.original.hidden ? "Показать проект" : "Скрыть проект"} transitionProps={{ transition: 'slide-up', duration: 300 }} withArrow={true} color={"rgba(0.3, 0.3, 0.3, 0.6)"}>
                         <Button color={"indigo.4"} variant={"outline"} pl={'6%'} pr={'3%'} strokeWidth={10}
                                 leftIcon={row.original.hidden ? <IconEyeOff height={40} width={40} color={"#748FFC"} /> : <IconEye height={40} width={40} color={"#748FFC"} />} onClick={(event) => { hide(row)

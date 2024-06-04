@@ -3,7 +3,7 @@ import { getCookie } from "cookies-next";
 
 export default async function CreateProject(req, res) {
     if (req.method === "POST") {
-        const { name, description, time_for_speech, grade, section, conference_id, members, tutor_id } = req.body
+        const { name, description, time_for_speech, grade, section, conference_id, members, tutor_id, additional_users} = req.body
         try {
         const jwt = getCookie('auth_token', { req, res })
         const user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
@@ -51,7 +51,7 @@ export default async function CreateProject(req, res) {
                 grade: grade,
                 active: true,
                 tutor: {connect: { id: tutor_id }},
-                additionalUsers: req.body.additional_users,
+                additionalUsers: additional_users,
                 Conference: {
                     connect: {
                         id: conference[0].id,

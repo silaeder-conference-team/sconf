@@ -37,7 +37,7 @@ export default async function getSchedule(req, res) {
                     id: hig2.userId
                 }
             })
-            usrs += hig.name + ", "
+            usrs += hig.name + (hig2 === x.users.at(-1) ? '' : ', ')
         }
         output.push({
             id: x.id,

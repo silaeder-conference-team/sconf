@@ -49,20 +49,18 @@ export default function Project() {
 
     return (
 <Center><Stack
-      w={900}
+      w={'90%'}
       bg="var(--mantine-color-body)"
       align="center"
     >	
-	    <Title>{prjName}</Title>
+	    <Title fs={'30rem'}>{prjName}</Title>
 	    <Space />
 		<Center><Text align="center">{prjDesc}</Text></Center>
 	      
 	        {users}	
 		<Image src="https://placehold.co/400x50/1A1B1E/f8f9fa?text=Нет картинки" radius="md" />	
 
-	    <Group>
-	    <Button onClick={(e) => {router.push('/show?prj_id='+prj_id)}}>Просмотреть презентацию</Button>
-	    </Group>
+	    <Button color={'indigo.5'} w={'50%'} onClick={(e) => {router.push('/show?prj_id='+prj_id)}}>Просмотреть презентацию</Button>
 		</Stack></Center>
  		
     )

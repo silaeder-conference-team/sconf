@@ -18,6 +18,7 @@ model User {
   isTutor          Boolean
   tutoringProjects Project[]
   projects         ProjectsOnUsers[]
+  isDeleted        Boolean           @default(false)
 }
 
 model Project {
@@ -29,12 +30,12 @@ model Project {
   schedulePos     Int
   active          Boolean
   tutorId         Int?
-  tutor           User?             @relation(fields: [tutorId], references: [id])
+  tutor           User?             @relation(fields: [tutorId], references: [id], onDelete: SetNull)
   conferenceId    Int?
   grade           Int
   isHidden        Boolean           @default(false)
   isInShowerCase  Boolean           @default(false)
-  Conference      Conference?       @relation(fields: [conferenceId], references: [id])
+  Conference      Conference?       @relation(fields: [conferenceId], references: [id], onDelete: SetNull)
   users           ProjectsOnUsers[]
   additionalUsers String            @default("")
 }
