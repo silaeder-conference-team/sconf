@@ -433,7 +433,7 @@ const Index = () => {
                     }
                     <Button mb={'5%'} color={'indigo.3'} fullWidth onClick={handleClick}> Создать новый проект </Button>
                     <Center m={'3%'}><Title>Ваши проекты</Title></Center>
-                    {userProjects.length === 0 && <Center><Title>...</Title></Center>}
+                    {userProjects.length === 0 && <Center><Title>. . .</Title></Center>}
                     <SimpleGrid cols={1} spacing="xs" verticalSpacing="xs">
                         { userProjects.map(project => (
                             <ProjectCard key={project.id} name={project.name} description={project.description} projectId={project.id}

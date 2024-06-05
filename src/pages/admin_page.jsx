@@ -6,7 +6,6 @@ import { Table } from '@mantine/core';
 const Admin_page = () => {
     const [ users, setUsers ] = useState([]);
     const [ projects, setProjects ] = useState([]);
-    const [ authorized, setAuthorized ] = useState(false);
     const [ isAdmin, setAdmin ] = useState(false)
     const [ organizer, setOrganizer ] = useState(false)
     const [ tutor, setTutor ] = useState(false)
@@ -34,7 +33,6 @@ const Admin_page = () => {
         })
         checkLogin().then((data) => {
             if (data.status === 'ok') {
-                setAuthorized(true)
                 if (data.user.isOrganisator) {
                     setAdmin(true)
                 } else {

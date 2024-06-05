@@ -4,7 +4,7 @@ export function ProjectCardForShowcase({name, section, description, showFunc, op
         <Card shadow="sm" padding="lg" radius="md" sx={{width: "100%"}} withBorder>
             <Card.Section>
                 <Image
-                    src={"/image?prj_id=" + projectId.toString()}
+                    src={process.env.NEXT_PUBLIC_FILEUPLOADER_URL + "/image?prj_id=" + projectId.toString()}
                     height={'30%'}
                     alt={name}
                 />

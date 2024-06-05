@@ -197,7 +197,8 @@ export function HeaderResponsive() {
                                 </Menu.Target>
                                 <Menu.Dropdown>
                                     <Menu.Label>{username}</Menu.Label>
-                                    <Menu.Item icon={<IconArrowsLeftRight size={14} />} onClick={() => { changeOpened(true) }}>Сменить пароль</Menu.Item>
+                                    {//<Menu.Item icon={<IconArrowsLeftRight size={14} />} onClick={() => { changeOpened(true) }}>Сменить пароль</Menu.Item>
+                                    }
                                     <Menu.Item onClick={handleClick} color="red" icon={<IconLogout size={14} />}>Выйти</Menu.Item>
                                 </Menu.Dropdown>
                             </>

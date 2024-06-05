@@ -71,7 +71,7 @@ export default function ForgotPassword() {
                 {stage === 0 &&
                     <form onSubmit={form.onSubmit((values) => send_email(values.email))}>
                         <Text color="dimmed" size="sm" mt={5}>
-                            Введите вашу почту, указанную в таблице Силаэдра
+                            Введите вашу почту
                         </Text>
                         <TextInput label="Эл. почта" placeholder="jhondoe@example.com"
                                    required {...form.getInputProps('email')} />
