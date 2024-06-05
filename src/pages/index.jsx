@@ -332,56 +332,56 @@ const Index = () => {
                             </div>
                         </Group>
                     </Dropzone>
-                    <Text color="dimmed">Это видео будет храниться и показываться отдельно от презенации. В самой презентации также могут
-                        быть видео. Но здесь, как и в случае изображения должно быть самое главное.</Text>
-                    <Dropzone mb={'2%'}
-                              onDrop={(files) => {setVideo(files)}}
-                              maxSize={20 * 1024 ** 2}
-                              maxFiles={1}
-                              accept={{
-                                  'video/*': []
-                              }}>
-                        <Group position="center" spacing="xl" style={{ minHeight: rem(100), pointerEvents: 'none' }}>
-                            {previewsVideo.length === 0 &&
-                                <>
-                                    <Dropzone.Accept>
-                                        <IconUpload
-                                            size="3.2rem"
-                                            stroke={1.5}
-                                            color={theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6]}
-                                        />
-                                    </Dropzone.Accept>
-                                    <Dropzone.Reject>
-                                        <IconX
-                                            size="3.2rem"
-                                            stroke={1.5}
-                                            color={theme.colors.red[theme.colorScheme === 'dark' ? 4 : 6]}
-                                        />
-                                    </Dropzone.Reject>
-                                    <Dropzone.Idle>
-                                        <IconVideo size="3.2rem" stroke={1.5} />
-                                    </Dropzone.Idle>
-                                </>
-                            }
-                            <div>
-                                <Text size="xl" inline>
-                                    Переместите сюда видео или нажмите, чтобы выбрать файл
-                                </Text>
-                                <Text size="sm" color="dimmed" inline mt={7}>
-                                    Файл не должен весить более 20мб
-                                </Text>
-                                {previewsVideo &&
-                                    <SimpleGrid
-                                        cols={4}
-                                        breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
-                                        mt={previewsVideo.length > 0 ? 'xl' : 0}
-                                    >
-                                        {previewsVideo}
-                                    </SimpleGrid>
-                                }
-                            </div>
-                        </Group>
-                    </Dropzone>
+                    {/*<Text color="dimmed">Это видео будет храниться и показываться отдельно от презенации. В самой презентации также могут*/}
+                    {/*    быть видео. Но здесь, как и в случае изображения должно быть самое главное.</Text>*/}
+                    {/*<Dropzone mb={'2%'}*/}
+                    {/*          onDrop={(files) => {setVideo(files)}}*/}
+                    {/*          maxSize={20 * 1024 ** 2}*/}
+                    {/*          maxFiles={1}*/}
+                    {/*          accept={{*/}
+                    {/*              'video/*': []*/}
+                    {/*          }}>*/}
+                    {/*    <Group position="center" spacing="xl" style={{ minHeight: rem(100), pointerEvents: 'none' }}>*/}
+                    {/*        {previewsVideo.length === 0 &&*/}
+                    {/*            <>*/}
+                    {/*                <Dropzone.Accept>*/}
+                    {/*                    <IconUpload*/}
+                    {/*                        size="3.2rem"*/}
+                    {/*                        stroke={1.5}*/}
+                    {/*                        color={theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6]}*/}
+                    {/*                    />*/}
+                    {/*                </Dropzone.Accept>*/}
+                    {/*                <Dropzone.Reject>*/}
+                    {/*                    <IconX*/}
+                    {/*                        size="3.2rem"*/}
+                    {/*                        stroke={1.5}*/}
+                    {/*                        color={theme.colors.red[theme.colorScheme === 'dark' ? 4 : 6]}*/}
+                    {/*                    />*/}
+                    {/*                </Dropzone.Reject>*/}
+                    {/*                <Dropzone.Idle>*/}
+                    {/*                    <IconVideo size="3.2rem" stroke={1.5} />*/}
+                    {/*                </Dropzone.Idle>*/}
+                    {/*            </>*/}
+                    {/*        }*/}
+                    {/*        <div>*/}
+                    {/*            <Text size="xl" inline>*/}
+                    {/*                Переместите сюда видео или нажмите, чтобы выбрать файл*/}
+                    {/*            </Text>*/}
+                    {/*            <Text size="sm" color="dimmed" inline mt={7}>*/}
+                    {/*                Файл не должен весить более 20мб*/}
+                    {/*            </Text>*/}
+                    {/*            {previewsVideo &&*/}
+                    {/*                <SimpleGrid*/}
+                    {/*                    cols={4}*/}
+                    {/*                    breakpoints={[{ maxWidth: 'sm', cols: 1 }]}*/}
+                    {/*                    mt={previewsVideo.length > 0 ? 'xl' : 0}*/}
+                    {/*                >*/}
+                    {/*                    {previewsVideo}*/}
+                    {/*                </SimpleGrid>*/}
+                    {/*            }*/}
+                    {/*        </div>*/}
+                    {/*    </Group>*/}
+                    {/*</Dropzone>*/}
                     <Text color="dimmed">Загрузите ниже презентацию. Она будет показана на конференции. После загрузки можно будет посмотреть на
                         вид получившейся презентации.</Text>
                     <Dropzone mb={'2%'} maxFiles={1}
