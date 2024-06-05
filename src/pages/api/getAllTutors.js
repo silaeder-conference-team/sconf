@@ -1,7 +1,11 @@
 import { prisma } from "./_prisma_base";
 
 export default async function getAllUsers(req, res) {
-    const users = await prisma.user.findMany()
+    const users = await prisma.user.findMany({
+        where: {
+            isDeleted: false
+        }
+    })
     const json = []
     users.forEach((e) => {
         if (e.isTutor) {

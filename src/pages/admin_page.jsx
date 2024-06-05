@@ -120,7 +120,7 @@ const Admin_page = () => {
                             {...form.getInputProps('user')}
                             required
                         />
-                        <Button type={ "submit" } color={'indigo.6'}>Удалить навсегда аккаунт</Button>
+                        <Button type={ "submit" } color={'indigo.6'}>Удалить аккаунт</Button>
                     </form>
                 </Tabs.Panel>
                 <Tabs.Panel value={"move_projects_to_shower_case"}>
