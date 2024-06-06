@@ -285,53 +285,53 @@ const Index = () => {
                                {...form.getInputProps('additional_users')}
                     />
                     <Space h="lg" />
-                    <Text color="dimmed">Загрузите ниже фото или скрин вашего проекта. Это должно быть самым красивым, самым главным,
-                        что хотелось бы показать. Данное вами изображение будет на странице вашего проекта и, если повезёт,
-                        на витрине проекта, поэтому есть ограничение. Изображение должно быть горизонтальным и формы листа А5.</Text>
-                    <Dropzone mb={'2%'} aria-required
-                        onDrop={(files) => {setImage(files)}}
-                        maxSize={3 * 1024 ** 2}
-                        maxFiles={1}
-                        accept={IMAGE_MIME_TYPE}>
-                        <Group position="center" spacing="xl" style={{ minHeight: rem(100), pointerEvents: 'none' }}>
-                            {previewsImage.length === 0 &&
-                             <>
-                            <Dropzone.Accept>
-                                <IconUpload
-                                    size="3.2rem"
-                                    stroke={1.5}
-                                    color={theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6]}
-                                />
-                            </Dropzone.Accept>
-                            <Dropzone.Reject>
-                                <IconX
-                                    size="3.2rem"
-                                    stroke={1.5}
-                                    color={theme.colors.red[theme.colorScheme === 'dark' ? 4 : 6]}
-                                />
-                            </Dropzone.Reject>
-                            <Dropzone.Idle>
-                                <IconPhoto size="3.2rem" stroke={1.5} />
-                            </Dropzone.Idle>
-                            </>
-                            }
-                            <div>
-                                <Text size="xl" inline>
-                                    Переместите сюда изображение или нажмите, чтобы выбрать файл
-                                </Text>
-                                <Text size="sm" color="dimmed" inline mt={7}>
-                                    Файл не должен весить более 3мб
-                                </Text>
-                                <SimpleGrid
-                                    cols={4}
-                                    breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
-                                    mt={previewsImage.length > 0 ? 'xl' : 0}
-                                >
-                                    {previewsImage}
-                                </SimpleGrid>
-                            </div>
-                        </Group>
-                    </Dropzone>
+                    {/*<Text color="dimmed">Загрузите ниже фото или скрин вашего проекта. Это должно быть самым красивым, самым главным,*/}
+                    {/*    что хотелось бы показать. Данное вами изображение будет на странице вашего проекта и, если повезёт,*/}
+                    {/*    на витрине проекта, поэтому есть ограничение. Изображение должно быть горизонтальным и формы листа А5.</Text>*/}
+                    {/*<Dropzone mb={'2%'} aria-required*/}
+                    {/*    onDrop={(files) => {setImage(files)}}*/}
+                    {/*    maxSize={3 * 1024 ** 2}*/}
+                    {/*    maxFiles={1}*/}
+                    {/*    accept={IMAGE_MIME_TYPE}>*/}
+                    {/*    <Group position="center" spacing="xl" style={{ minHeight: rem(100), pointerEvents: 'none' }}>*/}
+                    {/*        {previewsImage.length === 0 &&*/}
+                    {/*         <>*/}
+                    {/*        <Dropzone.Accept>*/}
+                    {/*            <IconUpload*/}
+                    {/*                size="3.2rem"*/}
+                    {/*                stroke={1.5}*/}
+                    {/*                color={theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 4 : 6]}*/}
+                    {/*            />*/}
+                    {/*        </Dropzone.Accept>*/}
+                    {/*        <Dropzone.Reject>*/}
+                    {/*            <IconX*/}
+                    {/*                size="3.2rem"*/}
+                    {/*                stroke={1.5}*/}
+                    {/*                color={theme.colors.red[theme.colorScheme === 'dark' ? 4 : 6]}*/}
+                    {/*            />*/}
+                    {/*        </Dropzone.Reject>*/}
+                    {/*        <Dropzone.Idle>*/}
+                    {/*            <IconPhoto size="3.2rem" stroke={1.5} />*/}
+                    {/*        </Dropzone.Idle>*/}
+                    {/*        </>*/}
+                    {/*        }*/}
+                    {/*        <div>*/}
+                    {/*            <Text size="xl" inline>*/}
+                    {/*                Переместите сюда изображение или нажмите, чтобы выбрать файл*/}
+                    {/*            </Text>*/}
+                    {/*            <Text size="sm" color="dimmed" inline mt={7}>*/}
+                    {/*                Файл не должен весить более 3мб*/}
+                    {/*            </Text>*/}
+                    {/*            <SimpleGrid*/}
+                    {/*                cols={4}*/}
+                    {/*                breakpoints={[{ maxWidth: 'sm', cols: 1 }]}*/}
+                    {/*                mt={previewsImage.length > 0 ? 'xl' : 0}*/}
+                    {/*            >*/}
+                    {/*                {previewsImage}*/}
+                    {/*            </SimpleGrid>*/}
+                    {/*        </div>*/}
+                    {/*    </Group>*/}
+                    {/*</Dropzone>*/}
                     {/*<Text color="dimmed">Это видео будет храниться и показываться отдельно от презенации. В самой презентации также могут*/}
                     {/*    быть видео. Но здесь, как и в случае изображения должно быть самое главное.</Text>*/}
                     {/*<Dropzone mb={'2%'}*/}
@@ -382,7 +382,7 @@ const Index = () => {
                     {/*        </div>*/}
                     {/*    </Group>*/}
                     {/*</Dropzone>*/}
-                    <Text color="dimmed">Загрузите ниже презентацию. Она будет показана на конференции. После загрузки можно будет посмотреть на
+                    <Text color="dimmed">Загрузите ниже презентацию. Она будет показана на конференции. Через несколько минут после загрузки можно будет посмотреть на
                         вид получившейся презентации.</Text>
                     <Dropzone mb={'2%'} maxFiles={1}
                               onDrop={setPresentation}
