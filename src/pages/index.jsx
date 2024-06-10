@@ -455,6 +455,7 @@ const Index = () => {
                         <ProjectCard key={project.id} name={project.name} description={project.description} projectId={project.id}
                         section={project.section} editFunc={async (id) => {const result = (await redact(id)).project; setProjectInformation(result); form.setValues(result)}}
                         openPresentation={(project_id) => {router.push("/show?prj_id="+project_id)}}
+                                     deleteProject={(project_id) => deleteProject(project_id)}
                         />
 
                         ))}
