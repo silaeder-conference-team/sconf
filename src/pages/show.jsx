@@ -26,7 +26,6 @@ export default function App() {
                 });
         }
     }, [prj_id]);
-    console.log(onlyoffice_fileupploader_url +"/get-presentation?prj_id=34")
     return (
         <>
                 <DocumentEditor
@@ -35,9 +34,8 @@ export default function App() {
                     config={{
                         "document": {
                             "fileType": "pptx",
-                            "key": "34",
                             "title": "Presentation",
-                            "url": onlyoffice_fileupploader_url +"/get-presentation?prj_id=34"
+                            "url": onlyoffice_fileupploader_url +"/get-presentation?prj_id="+prj_id
                         },
                         "editorConfig": {
                             "mode": "view",
