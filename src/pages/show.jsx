@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 export default function App() {
     const connection_url = process.env.NEXT_PUBLIC_ONLYOFFICE_CONNECTION_URL;
     const fileuploader_url = process.env.NEXT_PUBLIC_FILEUPLOADER_URL;
-    const onlyoffice_fileupploader_url = process.env.NEXT_PUBLIC_LOCALFILEUPLOADER_URL;
+    const onlyoffice_fileupploader_url = process.env.NEXT_PUBLIC_FILEUPLOADER_URL;
 
     const router = useRouter();
     const prj_id = router.query.prj_id;
@@ -26,25 +26,24 @@ export default function App() {
                 });
         }
     }, [prj_id]);
-
+    console.log(onlyoffice_fileupploader_url +"/get-presentation?prj_id=34")
     return (
         <>
-        {extName != "" ?
-            <DocumentEditor
-                id="docxEditor"
-                documentServerUrl={connection_url}
-                config={{
-                    "document": {
-                        "fileType": extName,
-                        "key": prj_id,
-                        "title": "Presentation",
-                        "url": onlyoffice_fileupploader_url +"/get-presentation?prj_id="+prj_id
-                    },
-                    "editorConfig": {
-                        "mode": "view",
-                    },
-                }}
-            /> : <></>}
+                <DocumentEditor
+                    id="docxEditor"
+                    documentServerUrl={connection_url}
+                    config={{
+                        "document": {
+                            "fileType": "pptx",
+                            "key": "34",
+                            "title": "Presentation",
+                            "url": onlyoffice_fileupploader_url +"/get-presentation?prj_id=34"
+                        },
+                        "editorConfig": {
+                            "mode": "view",
+                        },
+                    }}
+                />
         </>
     );
-}   
+}
